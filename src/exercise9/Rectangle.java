@@ -39,7 +39,7 @@ public class Rectangle {
     }
 
     public double calculatePerimeter() {
-        return height * 2 + width * 2;
+        return height*2+width*2;
     }
 
     public double calculateArea() {
