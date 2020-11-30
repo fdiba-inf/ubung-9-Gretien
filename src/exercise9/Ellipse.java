@@ -19,8 +19,8 @@ public class Ellipse {
 
     public Ellipse(Ellipse otherEllipse) {
         startPoint = new Point(otherEllipse.startPoint);
-        a = otherEllipse.a;
-        b = otherEllipse.b;
+        this.a = otherEllipse.a;
+        this.b = otherEllipse.b;
     }
 
     public boolean isValid() {
@@ -32,9 +32,9 @@ public class Ellipse {
             System.out.println("Start point: ");
             startPoint.initialize();
             System.out.print("Enter a: ");
-            a = Utils.INPUT.nextDouble();
+            this.a = Utils.INPUT.nextDouble();
             System.out.print("Enter b: ");
-            b = Utils.INPUT.nextDouble();
+            this.b = Utils.INPUT.nextDouble();
         } while (!isValid());
     }
 
@@ -47,7 +47,7 @@ public class Ellipse {
     }
 
     public String getType() {
-        return (a == b) ? "Circle" : "Ellipse";
+        return (Utils.equals(a,b)) ? "Circle" : "Ellipse";
     }
 
     public String toString() {
@@ -55,10 +55,10 @@ public class Ellipse {
     }
 
     public boolean equal(Ellipse otherEllipse) {
-        boolean sameA = Utils.equals(a, otherEllipse.a);
-        boolean sameB = Utils.equals(b, otherEllipse.b);
-        boolean sameAReversed = Utils.equals(a, otherEllipse.b);
-        boolean sameBReversed = Utils.equals(b, otherEllipse.a);
+        boolean sameA = Utils.equals(this.a, otherEllipse.a);
+        boolean sameB = Utils.equals(this.b, otherEllipse.b);
+        boolean sameAReversed = Utils.equals(this.a, otherEllipse.b);
+        boolean sameBReversed = Utils.equals(this.b, otherEllipse.a);
 
         return (sameA && sameB) || (sameAReversed && sameBReversed);
     }
