@@ -2,63 +2,63 @@ package exercise9;
 
 public class Ellipse {
     private Point startPoint;
-    private double halbachseA;
-    private double halbachseB;
+    private double a;
+    private double b;
 
     public Ellipse() {
         startPoint = new Point(0, 0);
-        halbachseA = 1;
-        halbachseB = 1;
+        a = 1;
+        b = 1;
     }
 
-    public Ellipse(Point startPoint, double halbachseA, double halbachseB) {
+    public Ellipse(Point startPoint, double a, double b) {
         this.startPoint = new Point(startPoint);
-        this.halbachseA = halbachseA;
-        this.halbachseB = halbachseB;
+        this.a = a;
+        this.b = b;
     }
 
     public Ellipse(Ellipse otherEllipse) {
         startPoint = new Point(otherEllipse.startPoint);
-        halbachseA = otherEllipse.halbachseA;
-        halbachseB = otherEllipse.halbachseB;
+        a = otherEllipse.a;
+        b = otherEllipse.b;
     }
 
     public boolean isValid() {
-        return halbachseA > 0 && halbachseB > 0;
+        return a > 0 && b > 0;
     }
 
      public void initialize() {
         do {
             System.out.println("Start point: ");
             startPoint.initialize();
-            System.out.print("Enter halbachseA: ");
-            halbachseA = Utils.INPUT.nextDouble();
-            System.out.print("Enter halbachseB: ");
-            halbachseB = Utils.INPUT.nextDouble();
+            System.out.print("Enter a: ");
+            a = Utils.INPUT.nextDouble();
+            System.out.print("Enter b: ");
+            b = Utils.INPUT.nextDouble();
         } while (!isValid());
     }
 
     public double calculatePerimeter() {
-        return Math.PI*(3*(halbachseA+halbachseB)-Math.sqrt((3*halbachseA+halbachseB)*(halbachseA+3*halbachseB)));
+        return Math.PI*(3*(a+b)-Math.sqrt((3*a+b)*(a+3*b)));
     }
 
     public double calculateArea() {
-        return halbachseA * halbachseB * Math.PI;
+        return a * b * Math.PI;
     }
 
     public String getType() {
-        return (halbachseA == halbachseB) ? "Circle" : "Ellipse";
+        return (a == b) ? "Circle" : "Ellipse";
     }
 
     public String toString() {
-        return String.format("%s-[%s, %s], %s, P=%s, A=%s", startPoint, halbachseA, halbachseB, getType(), calculatePerimeter(), calculateArea());
+        return String.format("%s-[%s, %s], %s, P=%s, A=%s", startPoint, a, b, getType(), calculatePerimeter(), calculateArea());
     }
 
     public boolean equal(Ellipse otherEllipse) {
-        boolean sameA = Utils.equals(halbachseA, otherEllipse.halbachseA);
-        boolean sameB = Utils.equals(halbachseB, otherEllipse.halbachseB);
-        boolean sameAReversed = Utils.equals(halbachseA, otherEllipse.halbachseB);
-        boolean sameBReversed = Utils.equals(halbachseB, otherEllipse.halbachseA);
+        boolean sameA = Utils.equals(a, otherEllipse.a);
+        boolean sameB = Utils.equals(b, otherEllipse.b);
+        boolean sameAReversed = Utils.equals(a, otherEllipse.b);
+        boolean sameBReversed = Utils.equals(b, otherEllipse.a);
 
         return (sameA && sameB) || (sameAReversed && sameBReversed);
     }
